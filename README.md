@@ -42,5 +42,5 @@ Delete Menu
 
 ## Authors
 
-- [@Christian](https://github.com/Christian-Chrata)
+- [Christian](https://github.com/Christian-Chrata)
 
