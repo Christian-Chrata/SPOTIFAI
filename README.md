@@ -16,21 +16,27 @@ Clone the project
 
 ## Screenshots
 Customer Menu
+
 ![Customer Menu](https://github.com/Christian-Chrata/CapstoneModul1/blob/main/Screenshot/customerMenu.png)
 
 Admin Menu
+
 ![Admin Menu](https://github.com/Christian-Chrata/CapstoneModul1/blob/main/Screenshot/adminMenu.png)
 
 Search Menu
+
 ![Search Menu](https://github.com/Christian-Chrata/CapstoneModul1/blob/main/Screenshot/searchMenu.png)
 
 Add Menu
+
 ![Add Menu](https://github.com/Christian-Chrata/CapstoneModul1/blob/main/Screenshot/addMenu.png)
 
 Edit Menu
+
 ![Edit Menu](https://github.com/Christian-Chrata/CapstoneModul1/blob/main/Screenshot/editMenu.png)
 
 Delete Menu
+
 ![Delete Menu](https://github.com/Christian-Chrata/CapstoneModul1/blob/main/Screenshot/deleteMenu.png)
 
 
