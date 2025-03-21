@@ -15,7 +15,7 @@ Clone the project
 ```
 
 ## Screenshots
-
+### Customer Menu
 ![Customer Menu](https://github.com/Christian-Chrata/CapstoneModul1/blob/main/Screenshot/customerMenu.png)
 
 
