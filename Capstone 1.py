@@ -106,13 +106,13 @@ def show(type='customer', data=[]):
     if type == 'customer': # NAME | GENRE | ARTIST | YEAR | DURATION
         print(tabulate(
             data, 
-            headers=['Music name', 'Music genre', 'Artist', 'Release year', 'Song duration'], 
+            headers=['Music Name', 'Music Genre', 'Artist', 'Release Year', 'Song Duration'], 
             tablefmt='heavy_grid'
             ))
     elif type == 'admin': # Music ID | Name | Genre | Artist | Year | Duration
         print(tabulate(
             data, 
-            headers=['Music ID', 'Music name', 'Music genre', 'Artist', 'Release year', 'Song duration'], 
+            headers=['Music ID', 'Music Name', 'Music Genre', 'Artist', 'Release Year', 'Song Duration'], 
             tablefmt='heavy_grid'
             ))
 
@@ -474,7 +474,7 @@ def update(type='updateNormal'):
         for item in music:
             if item['MUSICID'] == user:
                 _BEFORE = item
-                _AFTER['MUSICID'] = item['MUSICID']
+                _AFTER = item.copy()
                 break
         
         if _AFTER['MUSICID'] != None:
@@ -491,10 +491,23 @@ def update(type='updateNormal'):
                 ]
             )
             show('admin', _data)
-            user = input('Do you want to update the music above? (Y/N) ').upper()
-            if (user == 'Y') or (user == 'YES'):
-                _AFTER['NAME']=input('Enter the music name: ') # Name
+            print(
+                '''
+Which section do you want to update?
+[1] Music name
+[2] Music genre
+[3] Artist
+[4] Release year
+[5] Song duration
+                ''')
+            
+            user = (input('Select menu: '))
+        
+            if user == '1': # Name
+                _AFTER['NAME']=input('Enter the music name: ')
                 
+            elif user == '2': # Genre
+                _AFTER['GENRE'] = None
                 while True: # Genre
                     print('Genre list: Ambient, Classical, Electronic, Folk, Jazz, Pop and Rock')
                     user=input('Enter the music genre: ').capitalize()
@@ -505,9 +518,12 @@ def update(type='updateNormal'):
                         print(f'The music genre {user} doesnt exists!')
                         
                     if _AFTER['GENRE'] != None: break
-                    
+                
+            elif user == '3': # Artist
                 _AFTER['ARTIST']=input('Enter the artist name: ').title() # Artist
                 
+            elif user == '4': # Release year
+                _AFTER['YEAR'] = None
                 while True: # Year
                     user=input('Enter the year the music was released: ')
                     
@@ -516,7 +532,9 @@ def update(type='updateNormal'):
                     else: _AFTER['YEAR'] = user 
                     
                     if _AFTER['YEAR'] != None: break
-                    
+            
+            elif user == '5': # Song duration
+                _AFTER['DURATION'] = None
                 while True: # Song duration
                     user=input('Enter the duration of the song in seconds: ')
                     
@@ -526,6 +544,10 @@ def update(type='updateNormal'):
                     
                     if _AFTER['DURATION'] != None: break
                 
+            else:
+                print(f'The option "{user}" is not valid 🙏')
+            
+            if _AFTER != _BEFORE:
                 _data = []
                 _data.append(
                     [
@@ -563,15 +585,7 @@ def update(type='updateNormal'):
                             item['DURATION'] =  _AFTER['DURATION']
                     print('The music item has been updated successfully.')
                 else: print('The process has been canceled')
-            else: print('The process has been canceled')
         else: print('There are no music items 🙏')
-        
-    # user = input('Are you sure you want to add the music above (Y/N): ').upper()
-    # if (user == 'Y') or (user == 'YES'):
-    #     music.extend(data)
-    #     print('The music has been successfully saved.')
-    # else: print('The process has been canceled')
-        
     input('Press enter... ')
 
 def updateMenu():
@@ -763,4 +777,4 @@ def deleteMenu():
 
 # ================================================================================
     
-mainMenu('customer')
+mainMenu('admin')
