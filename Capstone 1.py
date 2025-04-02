@@ -188,6 +188,25 @@ def read(type='customerShowAll'):
             show('admin', data)
         else: print('There are no music items 🙏')
         
+    elif type == 'adminShowID': # admin filter by id
+        user = input('Enter a music id: ')
+        
+        for item in music:
+            if user.lower() == item['MUSICID'].lower():
+                _DURATUION = f'{item['DURATION']//60}:{item['DURATION']%60}'
+                data.append([
+                    item['MUSICID'],
+                    item['NAME'], 
+                    item['GENRE'],
+                    item['ARTIST'], 
+                    item['YEAR'],
+                    _DURATUION
+                ])
+        
+        if len(data) > 0:
+            show('admin', data)
+        else: print(f'There are no music items with the keyword "{user}" 🙏')
+        
     elif type == 'adminShowKeyword': # admin filter by keyword id, name, genre, and artist
         user = input('Enter a music keyword: ')
         
@@ -232,30 +251,54 @@ def read(type='customerShowAll'):
 def searchMenu(type='customer'):
     while True:
         print(60*'\n')
-        print('''
+        if type=='customer':
+            print('''
 [\033[1mSearch Music\033[0m]
 
 [1] Show all music
 [2] Search music by keyword
 [3] Sort by genre
 [4] Back to main menu
-    ''')
-        user = (input('Select menu: '))
-        
-        if user == '1': # Show all music
-            if type=='admin': read('adminShowAll')
-            else: read('customerShowAll')
-        elif user == '2': # Search music by keyword
-            if type=='admin': read('adminShowKeyword')
-            else: read('customerShowKeyword')
-        elif user == '3': # Sort by genre
-            if type=='admin': read('adminSortGenre')
-            else: read('customerSortGenre')
-        elif user == '4': # Back to main menu
-            break
-        else:
-            print(f'The option "{user}" is not valid 🙏')
-            input('Press enter... ')
+        ''')
+            user = (input('Select menu: '))
+            
+            if user == '1': # Show all music
+                read('customerShowAll')
+            elif user == '2': # Search music by keyword
+                read('customerShowKeyword')
+            elif user == '3': # Sort by genre
+                read('customerSortGenre')
+            elif user == '4': # Back to main menu
+                break
+            else:
+                print(f'The option "{user}" is not valid 🙏')
+                input('Press enter... ')
+        elif type=='admin':
+            print('''
+[\033[1mSearch Music\033[0m]
+
+[1] Show all music
+[2] Search music by id
+[3] Search music by keyword
+[4] Sort by genre
+[5] Back to main menu
+        ''')
+            user = (input('Select menu: '))
+            
+            if user == '1': # Show all music
+                read('adminShowAll')
+            elif user == '2': # Search music by id
+                read('adminShowID')
+            elif user == '3': # Search music by keyword
+                read('adminShowKeyword')
+            elif user == '4': # Sort by genre
+                read('adminSortGenre')
+            elif user == '5': # Back to main menu
+                break
+            else:
+                print(f'The option "{user}" is not valid 🙏')
+                input('Press enter... ')
+            
 
 # ================================================================================
 # CREATE Section
@@ -307,8 +350,8 @@ def create(type='createSingle'):
             while True: # Year
                 user=input('Enter the year the music was released: ')
                 
-                if user.isdigit() == False:
-                    print('The year must be a number (e.g., 2000).')
+                if (user.isdigit() == False) or (int(user)>2025):
+                    print('The year entered must be a number and less than 2025 (e.g., 2000).')
                 else: _dict['YEAR'] = user 
                 
                 if _dict['YEAR'] != None: break
@@ -362,8 +405,8 @@ def create(type='createSingle'):
             while True: # Year
                 user=input('Enter the year the music was released: ')
                 
-                if user.isdigit() == False:
-                    print('The year must be a number (e.g., 2000).')
+                if (user.isdigit() == False) or (int(user)>2025):
+                    print('The year entered must be a number and less than 2025 (e.g., 2000).')
                 else: _dict['YEAR'] = user 
                 
                 if _dict['YEAR'] != None: break
@@ -527,8 +570,8 @@ Which section do you want to update?
                 while True: # Year
                     user=input('Enter the year the music was released: ')
                     
-                    if user.isdigit() == False:
-                        print('The year must be a number (e.g., 2000).')
+                    if (user.isdigit() == False) or (int(user)>2025):
+                        print('The year entered must be a number and less than 2025 (e.g., 2000).')
                     else: _AFTER['YEAR'] = user 
                     
                     if _AFTER['YEAR'] != None: break
