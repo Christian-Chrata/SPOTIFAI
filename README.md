@@ -1,5 +1,6 @@
 
 # SPOTIFAI 🎵
+![Spotifai Header](https://github.com/Christian-Chrata/CapstoneModul1/blob/main/Header.png)
 
 SPOTIFAI adalah aplikasi sederhana yang memungkinkan pengguna untuk melihat daftar lagu dengan informasi lengkap, termasuk nama lagu, genre, artis, tahun rilis, dan durasi.
 
